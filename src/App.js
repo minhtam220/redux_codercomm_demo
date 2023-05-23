@@ -1,10 +1,14 @@
 import React from "react";
-import logo from "./logo.png";
-import { Counter } from "./features/counter/Counter";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
+import Router from "./routes";
 
 function App() {
-  return <div className="App">Hello World</div>;
+  return (
+    <BrowserRouter>
+      <Router></Router>
+    </BrowserRouter>
+  );
 }
 
 export default App;
