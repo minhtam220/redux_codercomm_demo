@@ -1,35 +1,37 @@
 import axios from "axios";
+import { BASE_URL } from "./config";
 
-const api = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_API,
-  headers: {
-    "Content-Type": "application/json",
-  },
+const apiService = axios.create({
+  //baseURL: "https://codercomm-api-dot-cs-platform-306304.et.r.appspot.com/api",
+  baseURL: BASE_URL,
+  params: {},
 });
 
 /**
  * console.log all requests and responses
  */
-api.interceptors.request.use(
+apiService.interceptors.request.use(
   (request) => {
     console.log("Starting Request", request);
+    console.log("Starting Request", BASE_URL);
     return request;
   },
   function (error) {
-    console.log("REQUEST ERROR", error);
+    console.log("REQUEST ERROR", { error });
     return Promise.reject(error);
   }
 );
 
-api.interceptors.response.use(
+apiService.interceptors.response.use(
   (response) => {
     console.log("Response:", response);
     return response.data;
   },
   function (error) {
-    console.log("RESPONSE ERROR", error);
-    return Promise.reject(error);
+    console.log("RESPONSE ERROR", { error });
+    const message = error.response?.data?.errors?.message || "Unknown Error";
+    return Promise.reject({ message });
   }
 );
 
-export default api;
+export default apiService;
