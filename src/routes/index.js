@@ -8,12 +8,21 @@ import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RegisterPage from "../pages/RegisterPage";
 import UserProfilePage from "../pages/UserProfilePage";
+import AuthRequire from "./AuthRequire";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
+      <Route
+        path="/"
+        element={
+          <AuthRequire>
+            <MainLayout />
+          </AuthRequire>
+        }
+      >
         <Route index element={<HomePage />} />
+        <Route path="home" element={<HomePage />} />
         <Route path="account" element={<AccountPage />} />
         <Route path="user/:userId" element={<UserProfilePage />} />
       </Route>
