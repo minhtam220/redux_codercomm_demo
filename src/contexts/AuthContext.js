@@ -35,6 +35,12 @@ const reducer = (state, action) => {
         isAuthenticated: true,
         user: action.payload.user,
       };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user,
+      };
     case LOGOUT:
       return {
         ...state,
@@ -102,33 +108,30 @@ function AuthProvider({ children }) {
     callback();
   };
 
-  /*
+  const register = async ({ name, email, password }, callback) => {
+    const response = await apiService.post("/users", { name, email, password });
+    const { user, accessToken } = response.data;
+
+    setSession(accessToken);
+
+    dispatch({ type: REGISTER_SUCCESS, payload: { user } });
+
+    callback();
+  };
+
   const logout = async (callback) => {
-    const newData = {
-      username: window.localStorage.getItem("username"),
-      savedMovies: JSON.parse(window.localStorage.getItem("savedMovies")),
-    };
-
-    const userdata = JSON.parse(window.localStorage.getItem("userdata"));
-
-    const newUserdata = userdata.filter(
-      (item) => item.username !== newData.username
-    );
-
-    newUserdata.push(newData);
-
-    //save the array as string in local storage
-    window.localStorage.setItem("userdata", JSON.stringify(newUserdata));
-
+    setSession(null);
     dispatch({ type: LOGOUT });
     callback();
-  };*/
+  };
 
   return (
     <AuthContext.Provider
       value={{
         ...state,
         login,
+        register,
+        logout,
       }}
     >
       {children}

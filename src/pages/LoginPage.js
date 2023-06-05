@@ -3,9 +3,7 @@ import { FCheckbox, FormProvider, FTextField } from "../app/components/form";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
 import { useNavigate, useLocation, Link as RouterLink } from "react-router-dom";
-
 import useAuth from "../hooks/useAuth";
 import {
   Alert,
@@ -53,7 +51,7 @@ function LoginPage() {
 
   const onSubmit = async (data) => {
     const from = location.state?.from?.pathname || "/";
-    let { email, password } = data;
+    const { email, password } = data;
 
     console.log("Logging in");
 
@@ -63,11 +61,10 @@ function LoginPage() {
       });
     } catch (error) {
       reset();
-      console.log(error);
       setError("responseError", error);
-      console.log(errors);
     }
   };
+
   return (
     <Container maxWidth="xs">
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
