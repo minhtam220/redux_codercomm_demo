@@ -25,8 +25,8 @@ const reducer = (state, action) => {
       const { isAuthenticated, user } = action.payload;
       return {
         ...state,
-        isAuthenticated,
         isInitialized: true,
+        isAuthenticated,
         user,
       };
     case LOGIN_SUCCESS:
@@ -64,25 +64,25 @@ const setSession = (accessToken) => {
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  /*
   useEffect(() => {
     const initialize = async () => {
       try {
-        const username = window.localStorage.getItem("username");
+        const accessToken = window.localStorage.getItem("accessToken");
 
-        if (username) {
+        if (accessToken && isValidToken(accessToken)) {
+          setSession(accessToken);
+
+          const response = await apiService.get("/users/me");
+          const user = response.data;
+
           dispatch({
             type: INITIALIZE,
-            payload: { isAuthenticated: true, user: { username } },
-          });
-        } else {
-          dispatch({
-            type: INITIALIZE,
-            payload: { isAuthenticated: false, user: null },
+            payload: { isAuthenticated: true, user },
           });
         }
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        setSession(null);
+
         dispatch({
           type: INITIALIZE,
           payload: {
@@ -92,10 +92,9 @@ function AuthProvider({ children }) {
         });
       }
     };
+
     initialize();
   }, []);
-
-  */
 
   const login = async ({ email, password }, callback) => {
     const response = await apiService.post("/auth/login", { email, password });
@@ -113,9 +112,7 @@ function AuthProvider({ children }) {
     const { user, accessToken } = response.data;
 
     setSession(accessToken);
-
     dispatch({ type: REGISTER_SUCCESS, payload: { user } });
-
     callback();
   };
 
