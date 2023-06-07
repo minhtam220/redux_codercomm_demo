@@ -77,7 +77,20 @@ function AuthProvider({ children }) {
 
           dispatch({
             type: INITIALIZE,
-            payload: { isAuthenticated: true, user },
+            payload: {
+              isAuthenticated: true,
+              user,
+            },
+          });
+        } else {
+          setSession(null);
+
+          dispatch({
+            type: INITIALIZE,
+            payload: {
+              isAuthenticated: false,
+              user: null,
+            },
           });
         }
       } catch (error) {

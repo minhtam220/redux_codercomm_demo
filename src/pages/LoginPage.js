@@ -53,8 +53,6 @@ function LoginPage() {
     const from = location.state?.from?.pathname || "/";
     const { email, password } = data;
 
-    console.log("Logging in");
-
     try {
       await auth.login({ email, password }, () => {
         navigate(from, { replace: true });

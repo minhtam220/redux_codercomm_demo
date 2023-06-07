@@ -10,8 +10,9 @@ function AuthRequire({ children }) {
     return <LoadingScreen />;
   }
 
+  console.log("isInitialized" + isInitialized);
+
   if (!isAuthenticated) {
-    console.log(isAuthenticated);
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
