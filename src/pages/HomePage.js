@@ -64,23 +64,25 @@ function HomePage() {
     <Container>
       <Card sx={{ mb: 3, height: 200, position: "relative" }}>
         <ProfileCover profile={user}></ProfileCover>
-        <Tabs
-          value={currentTab}
-          scrollButtons="auto"
-          variant="scrollable"
-          allowScrollButtonsMobile
-          onChange={(e, value) => handleChangeTab(value)}
-        >
-          {PROFILE_TABS.map((tab) => (
-            <Tab
-              disableRipple
-              key={tab.value}
-              value={tab.value}
-              icon={tab.icon}
-              label={capitalCase(tab.value)}
-            />
-          ))}
-        </Tabs>
+        <TabsWrapperStyle>
+          <Tabs
+            value={currentTab}
+            scrollButtons="auto"
+            variant="scrollable"
+            allowScrollButtonsMobile
+            onChange={(e, value) => handleChangeTab(value)}
+          >
+            {PROFILE_TABS.map((tab) => (
+              <Tab
+                disableRipple
+                key={tab.value}
+                value={tab.value}
+                icon={tab.icon}
+                label={capitalCase(tab.value)}
+              />
+            ))}
+          </Tabs>
+        </TabsWrapperStyle>
       </Card>
 
       {PROFILE_TABS.map((tab) => {
