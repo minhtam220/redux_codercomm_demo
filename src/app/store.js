@@ -1,8 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-//import counterReducer from '../features/counter/counterSlice';
+import commentReducer from "../features/comment/commentSlice";
+import friendReducer from "../features/friend/friendSlice";
+import postReducer from "../features/post/postSlice";
+import userReducer from "../features/user/userSlice";
+
+const rootReducer = {
+  comment: commentReducer,
+  friend: friendReducer,
+  post: postReducer,
+  user: userReducer,
+};
 
 export const store = configureStore({
-  reducer: {
-    //counter: counterReducer,
-  },
+  reducer: rootReducer,
 });

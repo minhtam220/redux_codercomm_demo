@@ -41,7 +41,7 @@ function HomePage() {
     {
       value: "profile",
       icon: <AccountBoxIcon sx={{ fontSize: 24 }} />,
-      component: <Profile />,
+      component: <Profile profile={user} />,
     },
     {
       value: "friends",
