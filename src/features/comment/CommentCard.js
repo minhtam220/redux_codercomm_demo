@@ -26,7 +26,7 @@ function CommentCard({ comment }) {
           {comment.content}
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          {/*<CommentReaction comment={comment} />*/}
+          <CommentReaction comment={comment} />
         </Box>
       </Paper>
     </Stack>

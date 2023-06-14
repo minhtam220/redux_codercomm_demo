@@ -9,8 +9,9 @@ function CommentReaction({ comment }) {
   const dispatch = useDispatch();
 
   const handleClick = (emoji) => {
+    console.log(comment._id);
     console.log(emoji);
-    dispatch(sendCommentReaction({ commendId: comment._id, emoji }));
+    dispatch(sendCommentReaction({ commentId: comment._id, emoji }));
   };
   return (
     <Stack direction="row" alignItems="center">
