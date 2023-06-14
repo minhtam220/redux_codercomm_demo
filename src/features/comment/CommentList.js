@@ -8,18 +8,18 @@ import LoadingScreen from "../../app/components/LoadingScreen";
 
 function CommentList({ postId }) {
   const {
-    commentsByPost,
-    commentsById,
-    totalComments,
     isLoading,
+    commentsById,
+    commentsByPost,
+    totalComments,
     currentPage,
   } = useSelector(
     (state) => ({
+      isLoading: state.comment.isLoading,
+      commentsById: state.comment.commentsById,
       commentsByPost: state.comment.commentsByPost[postId],
       totalComments: state.comment.totalCommentsByPost[postId],
       currentPage: state.comment.currentPageByPost[postId] || 1,
-      commentsById: state.comment.commentsByld,
-      isLoading: state.comment.isLoading,
     }),
     shallowEqual
   );
@@ -33,7 +33,6 @@ function CommentList({ postId }) {
 
   let renderComments;
 
-  /*
   if (commentsByPost) {
     const comments = commentsByPost.map((commentId) => commentsById[commentId]);
     renderComments = (
@@ -46,7 +45,6 @@ function CommentList({ postId }) {
   } else if (isLoading) {
     renderComments = <LoadingScreen />;
   }
-  */
 
   return (
     <Stack spacing={1.5}>
@@ -66,6 +64,7 @@ function CommentList({ postId }) {
           />
         )}
       </Stack>
+      {renderComments}
     </Stack>
   );
 }
