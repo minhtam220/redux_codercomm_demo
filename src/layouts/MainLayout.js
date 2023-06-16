@@ -3,14 +3,16 @@ import React from "react";
 import MainHeader from "./MainHeader";
 import MainFooter from "./MainFooter";
 import { Outlet } from "react-router-dom";
+import AlertMsg from "../app/components/AlertMsg";
 
 function MainLayout() {
   return (
     <Stack sx={{ minHeight: "100vh" }}>
-      <MainHeader></MainHeader>
-      <Outlet></Outlet>
+      <MainHeader />
+      <AlertMsg />
+      <Outlet />
       <Box sx={{ flexGrow: 1 }} />
-      <MainFooter></MainFooter>
+      <MainFooter />
     </Stack>
   );
 }
