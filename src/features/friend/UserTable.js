@@ -76,9 +76,9 @@ function UserTable({ users }) {
                     />
                     <Link
                       variant="subtitle2"
-                      sx={{ fontweight: 600 }}
+                      sx={{ fontWeight: 600 }}
                       component={RouterLink}
-                      to={`/user/$(user._id)`}
+                      to={`/user/${user._id}`}
                     >
                       {user.name}
                     </Link>

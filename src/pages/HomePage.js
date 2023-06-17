@@ -62,7 +62,7 @@ function HomePage() {
 
   return (
     <Container>
-      <Card sx={{ mb: 3, height: 200, position: "relative" }}>
+      <Card sx={{ mb: 3, height: 400, position: "relative" }}>
         <ProfileCover profile={user}></ProfileCover>
         <TabsWrapperStyle>
           <Tabs

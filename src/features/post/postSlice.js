@@ -47,6 +47,10 @@ const slice = createSlice({
       const { postId, reactions } = action.payload;
       state.postsById[postId]["reactions"] = reactions;
     },
+    resetPosts(state, action) {
+      state.postsById = {};
+      state.currentPagePosts = [];
+    },
   },
 });
 
@@ -74,6 +78,9 @@ export const getPosts =
       const response = await apiService.get(`/posts/user/${userId}`, {
         params,
       });
+      if (page === 1) {
+        dispatch(slice.actions.resetPosts());
+      }
       dispatch(slice.actions.getPostSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
