@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { FormProvider, FTextField } from "../../app/components/form";
 import useAuth from "../../hooks/useAuth";
 import { useDispatch, useSelector } from "react-redux";
-//import { updateUserProfile } from "./userSlice";
+import { updateUserProfile } from "./userSlice";
 
 const SOCIAL_LINKS = [
   {
@@ -32,6 +32,7 @@ const SOCIAL_LINKS = [
 
 function AccountSocialLinks() {
   const { user } = useAuth();
+  const isLoading = useSelector((state) => state.user.isLoading);
 
   const defaultValues = {
     facebookLink: user?.facebookLink || "",
@@ -52,7 +53,7 @@ function AccountSocialLinks() {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    //dispatch(updateUserProfile({ userId: user._id, ...data }));
+    dispatch(updateUserProfile({ userId: user._id, ...data }));
   };
 
   return (
@@ -70,6 +71,14 @@ function AccountSocialLinks() {
               }}
             />
           ))}
+
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            loading={isSubmitting || isLoading}
+          >
+            Save Changes
+          </LoadingButton>
         </Stack>
       </FormProvider>
     </Card>
