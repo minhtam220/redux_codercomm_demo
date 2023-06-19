@@ -4,12 +4,12 @@ import { getPosts } from "./postSlice";
 import PostCard from "./PostCard";
 import { LoadingButton } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
+import PostForm from "./PostForm";
 
 function PostList({ userId }) {
   const [page, setPage] = useState(1);
-  const { postsById, currentPagePosts, totalPosts, isLoading } = useSelector(
-    (state) => state.post
-  );
+  const { postsById, currentPagePosts, totalPosts, isLoading, editingPost } =
+    useSelector((state) => state.post);
   const posts = currentPagePosts.map((postId) => postsById[postId]);
   const dispatch = useDispatch();
 
@@ -19,11 +19,13 @@ function PostList({ userId }) {
 
   return (
     <div>
-      {posts.map((post) => (
-        <>
+      {posts.map((post) =>
+        post._id === editingPost ? (
+          <PostForm post={post} />
+        ) : (
           <PostCard key={post._id} post={post} />
-        </>
-      ))}
+        )
+      )}
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         {totalPosts ? (
           <LoadingButton

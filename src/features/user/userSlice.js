@@ -67,7 +67,6 @@ export const updateUserProfile =
     try {
       const data = {
         name,
-
         coverUrl,
         aboutMe,
         city,

@@ -25,6 +25,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "./postSlice";
+import { updatePost } from "./postSlice";
 
 const yupSchema = Yup.object().shape({
   content: Yup.string().required("Content is required"),
@@ -35,7 +36,13 @@ const defaultValues = {
   image: "",
 };
 
-function PostForm() {
+function PostForm({ post }) {
+  if (post) {
+    defaultValues["content"] = post.content;
+    defaultValues["image"] = post.image;
+    //console.log("post.content", post);
+  }
+
   const methods = useForm({
     resolver: yupResolver(yupSchema),
     defaultValues,
@@ -53,7 +60,12 @@ function PostForm() {
   const { isLoading } = useSelector((state) => state.post);
 
   const onSubmit = (data) => {
-    dispatch(createPost(data)).then(() => reset());
+    if (post) {
+      data["postId"] = post._id;
+      dispatch(updatePost(data));
+    } else {
+      dispatch(createPost(data)).then(() => reset());
+    }
   };
 
   const handleDrop = useCallback(
@@ -80,7 +92,7 @@ function PostForm() {
             multiline
             fullWidth
             rows={4}
-            placeholder="What's on your mind?"
+            placeholder={"What's on your mind?"}
             sx={{
               "& fieldset": {
                 borderWidth: `1px !important`,
