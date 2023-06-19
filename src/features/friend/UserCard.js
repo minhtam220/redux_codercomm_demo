@@ -31,14 +31,15 @@ function UserCard({ profile }) {
           {name}
         </Link>
 
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        {/*<Box sx={{ display: "flex", alignItems: "center" }}>
           <EmailRoundedIcon
             sx={{ width: 16, height: 16, mr: 0.5, flexShrink: 0 }}
           />
+         
           <Typography variant="body2" sx={{ color: "text.secondary" }} nowrap>
             {email}
           </Typography>
-        </Box>
+        </Box>*/}
       </Box>
       {actionButton}
     </Card>
