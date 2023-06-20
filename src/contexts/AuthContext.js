@@ -64,7 +64,6 @@ const reducer = (state, action) => {
         twitterLink,
         friendCount,
         postCount,
-        I,
       } = action.payload;
       return {
         ...state,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FCheckbox, FormProvider, FTextField } from "../app/components/form";
+import { FormProvider, FTextField } from "../app/components/form";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -7,12 +7,7 @@ import { useNavigate, useLocation, Link as RouterLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {
   Alert,
-  Box,
-  Button,
-  Grid,
   Stack,
-  TextField,
-  Typography,
   Container,
   Link,
   IconButton,
@@ -56,7 +51,6 @@ function RegisterPage() {
   } = methods;
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const onSubmit = async (data) => {
     const { name, email, password } = data;

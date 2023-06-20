@@ -7,21 +7,7 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import {
-  Alert,
-  Box,
-  Button,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-  Container,
-  Link,
-  IconButton,
-  InputAdornment,
-  Card,
-  alpha,
-} from "@mui/material";
+import { Box, Stack, Card, alpha } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "./postSlice";
