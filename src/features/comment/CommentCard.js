@@ -5,7 +5,7 @@ import CommentReaction from "./CommentReaction";
 import { MoreVert } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import useAuth from "../../hooks/useAuth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteComment } from "./commentSlice";
 
 function CommentCard({ comment }) {

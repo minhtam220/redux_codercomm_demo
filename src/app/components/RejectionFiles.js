@@ -20,7 +20,6 @@ function RejectionFiles({ fileRejections }) {
         return (
           <Box key={path} sx={{ my: 1 }}>
             <Typography variant="subtitle2" noWraps>
-              {" "}
               {path} - {fData(size)}
             </Typography>
             {errors.map((error) => (

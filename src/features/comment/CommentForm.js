@@ -3,24 +3,8 @@ import { FormProvider, FTextField } from "../../app/components/form";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import {
-  Alert,
-  Box,
-  Button,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-  Container,
-  Link,
-  IconButton,
-  InputAdornment,
-  Card,
-  alpha,
-  Avatar,
-} from "@mui/material";
-import { LoadingButton } from "@mui/lab";
-import { useDispatch, useSelector } from "react-redux";
+import { Stack, IconButton, Avatar } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { createComment } from "./commentSlice";
 import useAuth from "../../hooks/useAuth";
 import SendIcon from "@mui/icons-material/Send";
@@ -49,11 +33,8 @@ function CommentForm({ postId }) {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
-  //const { isLoading } = useSelector((state) => state.comment);
-
   const onSubmit = (data) => {
     data["postId"] = postId;
-    console.log(data);
     dispatch(createComment(data)).then(() => reset());
   };
 

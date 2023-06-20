@@ -156,7 +156,6 @@ export const toggleUpdatePost =
     dispatch(slice.actions.startLoading());
     try {
       dispatch(slice.actions.toggleUpdatePostSuccess(postId));
-      //toast.success("Update Post Successfully");
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
     }

@@ -1,9 +1,7 @@
 import React from "react";
-
 import { Avatar, Box, Card, Typography, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-
 import useAuth from "../../hooks/useAuth";
 import ActionButton from "./ActionButton";
 

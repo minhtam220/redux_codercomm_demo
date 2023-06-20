@@ -9,8 +9,6 @@ function CommentReaction({ comment }) {
   const dispatch = useDispatch();
 
   const handleClick = (emoji) => {
-    console.log(comment._id);
-    console.log(emoji);
     dispatch(sendCommentReaction({ commentId: comment._id, emoji }));
   };
   return (

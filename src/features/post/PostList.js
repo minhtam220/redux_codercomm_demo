@@ -21,7 +21,7 @@ function PostList({ userId }) {
     <div>
       {posts.map((post) =>
         post._id === editingPost ? (
-          <PostForm post={post} />
+          <PostForm key={post._id} post={post} />
         ) : (
           <PostCard key={post._id} post={post} />
         )
